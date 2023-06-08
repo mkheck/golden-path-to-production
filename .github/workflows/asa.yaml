@@ -26,10 +26,20 @@ jobs:
             az storage -h
 
 
+
+              
+      - uses: actions/setup-java@v3
+        with:
+          distribution: 'adopt'
+          java-version: 17
+
       - run: |
           az account show 
           echo "hello world"
 
+      - run: |
+          cd $GITHUB_WORKSPACE
+          ./gradlew bootBuildImage
           
 
       - name: deploy to production with artifact
@@ -40,11 +50,4 @@ jobs:
           service-name: mkheck-jlong-service
           app-name: path-to-production
           use-staging-deployment: false
-          package: ${{ env.ASC_PACKAGE_PATH }}/**/*.jar
-
-
-        
-      - uses: actions/setup-java@v3
-        with:
-          distribution: 'adopt'
-          java-version: 17
+          package: ${{ env.ASC_PACKAGE_PATH }}/**/*.jar          

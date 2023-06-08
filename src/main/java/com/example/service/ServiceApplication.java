@@ -16,12 +16,7 @@ public class ServiceApplication {
 
     @Bean
     InitializingBean env() {
-        return new InitializingBean() {
-            @Override
-            public void afterPropertiesSet() throws Exception {
-                System.getenv().forEach((k, v) -> System.out.println('\t' +k));
-            }
-        };
+        return () -> System.getenv().forEach((k, v) -> System.out.println('\t' + k));
     }
 
     public static void main(String[] args) {

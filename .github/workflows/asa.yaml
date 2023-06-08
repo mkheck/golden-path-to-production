@@ -50,4 +50,5 @@ jobs:
           service-name: mkheck-jlong-service
           app-name: path-to-production
           use-staging-deployment: false
-          package: ${{ env.GITHUB_WORKSPACE }}/build/libs/service-0.0.1-SNAPSHOT.jar      
+          package: ./build/libs/service-0.0.1-SNAPSHOT.jar 
+          # package: ${{ env.ASC_PACKAGE_PATH }}/**/*.jar          

@@ -1,2 +1,2 @@
 # the Golden Path to Production with Mark Heckler and Josh Long
-[Josh Long (@coffeesoftware)](https://youtube.com/@coffeesoftware) and [Mark Heckler (@mkheck) ](https://twitter.com/mkheck) help you get to production, quickly
+[Josh Long (@coffeesoftware)](https://youtube.com/@coffeesoftware) and [Mark Heckler (@mkheck) ](https://twitter.com/mkheck) help you get to production, the happiest place on earth quickly! This live-coding show will use the newest Spring and Java features, including tools like GitHub Copilot and GitHub Codespaces, and will finish with Java vs. GraalVM deployments.

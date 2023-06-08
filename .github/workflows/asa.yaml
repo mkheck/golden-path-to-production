@@ -24,8 +24,7 @@ jobs:
           inlineScript: |
             az account show
             az storage -h
-
-
+            az extension add -n spring
 
               
       - uses: actions/setup-java@v3
@@ -36,6 +35,7 @@ jobs:
       - run: |
           az account show 
           echo "hello world"
+          az extension list 
 
       - run: |
           cd $GITHUB_WORKSPACE

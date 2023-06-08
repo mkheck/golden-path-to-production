@@ -17,38 +17,40 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
           
-      - name: Azure CLI script
-        uses: azure/CLI@v1
-        with:
-          azcliversion: 2.30.0
-          inlineScript: |
-            az account show
-            az storage -h
-            az extension add -n spring
-
-              
+                    
       - uses: actions/setup-java@v3
         with:
           distribution: 'adopt'
           java-version: 17
 
-      - run: |
-          az account show 
-          echo "hello world"
+      - name: Setup AZ CLI 
+        run: |
+          echo "Setting up Azure CLI"
           az extension list 
+          az account show
+          az storage -h
+          az extension add -n spring
+          az extension list 
+          echo "Azure CLI is setup"
 
       - run: |
           cd $GITHUB_WORKSPACE
           ./gradlew build
 
+      - name: Setup AZ CLI 
+        run: |
+          ARTIFACT=$GITHUB_WORKSPACE/build/libs/service-0.0.1-SNAPSHOT.jar
+          
+          az spring app deploy -n path-to-production -g mkheck-jlong-rg -s mkheck-jlong-service  --artifact-path $ARTIFACT --jvm-options='-Xms2048m -Xmx2048m'
 
-      - name: deploy to production with artifact
-        uses: azure/spring-apps-deploy@v1
-        with:
-          azure-subscription: ${{ env.AZURE_SUBSCRIPTION }}
-          action: Deploy
-          service-name: mkheck-jlong-service
-          app-name: path-to-production
-          use-staging-deployment: false
-          package: ./build/libs/service-0.0.1-SNAPSHOT.jar 
-          # package: ${{ env.ASC_PACKAGE_PATH }}/**/*.jar          
+
+      # - name: deploy to production with artifact
+      #   uses: azure/spring-apps-deploy@v1
+      #   with:
+      #     azure-subscription: ${{ env.AZURE_SUBSCRIPTION }}
+      #     action: Deploy
+      #     service-name: mkheck-jlong-service
+      #     app-name: path-to-production
+      #     use-staging-deployment: false
+      #     package: ./build/libs/service-0.0.1-SNAPSHOT.jar 
+      #     # package: ${{ env.ASC_PACKAGE_PATH }}/**/*.jar          

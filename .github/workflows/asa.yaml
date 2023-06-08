@@ -39,8 +39,8 @@ jobs:
 
       - run: |
           cd $GITHUB_WORKSPACE
-          ./gradlew bootBuildImage
-          
+          ./gradlew build
+
 
       - name: deploy to production with artifact
         uses: azure/spring-apps-deploy@v1
@@ -50,4 +50,4 @@ jobs:
           service-name: mkheck-jlong-service
           app-name: path-to-production
           use-staging-deployment: false
-          package: ${{ env.ASC_PACKAGE_PATH }}/**/*.jar          
+          package: ${{ env.GITHUB_WORKSPACE }}/build/libs/service-0.0.1-SNAPSHOT.jar      

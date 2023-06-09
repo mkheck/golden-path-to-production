@@ -1,5 +1,18 @@
 package com.example.service;
 
+import static org.mockito.BDDMockito.given;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.web.servlet.MockMvc;
+
 @WebMvcTest(CustomerHttpController.class)
 public class TestController {
     @Autowired
@@ -8,7 +21,7 @@ public class TestController {
     @MockBean
     private CustomerRepository repository;
 
-    @SetUp
+    @BeforeEach
     public void setUp() {
         Customer customer1 = new Customer(1, "Josh");
         Customer customer2 = new Customer(2, "Mark");

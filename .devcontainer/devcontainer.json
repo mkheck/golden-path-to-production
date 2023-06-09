@@ -21,7 +21,8 @@
 				"vmware.vscode-spring-boot",
 				"vscjava.vscode-java-pack",
 				"vscjava.vscode-gradle",
-				"k--kato.intellij-idea-keybindings"
+				"k--kato.intellij-idea-keybindings",
+				"GitHub.copilot"
 			]
 		}
 	}

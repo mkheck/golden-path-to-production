@@ -11,9 +11,7 @@
 			"jdkVersion": "17",
 			"jdkDistro": "ms"
 		},
-		"ghcr.io/devcontainers/features/sshd:1": {
-			"version": "latest"
-		}
+		"ghcr.io/devcontainers/features/sshd:1": {}
 	},
 	"customizations": {
 		"vscode": {

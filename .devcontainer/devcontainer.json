@@ -11,6 +11,16 @@
 			"jdkVersion": "17",
 			"jdkDistro": "ms"
 		}
+	},
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"vmware.vscode-spring-boot",
+				"vscjava.vscode-java-pack",
+				"vscjava.vscode-gradle",
+				"k--kato.intellij-idea-keybindings"
+			]
+		}
 	}
 
 	// Features to add to the dev container. More info: https://containers.dev/features.

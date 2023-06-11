@@ -1,17 +1,22 @@
 package com.example.service;
 
-import static org.mockito.BDDMockito.given;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.Matchers.is;
+import static org.mockito.BDDMockito.given;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(CustomerHttpController.class)
 public class TestController {
@@ -30,7 +35,7 @@ public class TestController {
         customers.add(customer2);
 
         given(repository.findAll()).willReturn(customers);
-        given(repository.findById(1)).willReturn(Optional.of(customer1));
+        given(repository.findByName("Josh")).willReturn(customer1);
     }
 
     // Test /customers endpoint
@@ -40,16 +45,6 @@ public class TestController {
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(2)));
-    }
-
-    // This isn't in our code, but note that it's built into the repository interface
-    // Test /customers/{id} endpoint
-    @Test
-    public void testGetCustomerById() throws Exception {
-        mvc.perform(get("/customers/1")
-                .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id", is(1)));
     }
 
     // Test /customers/{name} endpoint
